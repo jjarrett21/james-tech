@@ -1,0 +1,80 @@
+{
+  "env": {
+    "es6": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "react-app",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/indent": [
+      "error",
+      2
+    ],
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/no-object-literal-type-assertion": "off",
+    "consistent-return": "off",
+    "import/first": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/label-has-for": "off",
+    "no-alert": "off",
+    "no-console": "off",
+    "no-param-reassign": "off",
+    "no-restricted-globals": "off",
+    "no-restricted-syntax": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-useless-return": "off",
+    "prefer-promise-reject-errors": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react-hooks/rules-of-hooks": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/no-unescaped-entities": "off",
+    "react/prop-types": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/sort-comp": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
+}
