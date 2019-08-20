@@ -86,27 +86,24 @@ export default function ConfettiHeader() {
         <title>James Jarrett</title>
         <meta name="title" content="Welcome to my portfolio site" />
       </Helmet>
-
       <Canvas camera={{ fov: 75, position: [0, 0, 50] }}>
         <Swarm mouse={mouse} />
         <Effect />
       </Canvas>
       <div className="header-major">
         <span>James Jarrett</span>
+        <section>
+          <Icon link name="github" inverted>
+            <a href="https://github.com/jjarrett21" title="github" />
+          </Icon>
+          <Icon link name="twitter"  inverted>
+            <a href="https://twitter.com/__youngcreator" title="twitter" />
+          </Icon>
+          <Icon link name="linkedin" inverted>
+            <a href="https://www.linkedin.com/in/jjarrett21/" title="LinkedIn" />
+          </Icon>
+        </section>
       </div>
-
-      <Segment raised  size="large">
-        <a href="https://twitter.com/__youngcreator" title="Github">
-        <img src={"../images/github.svg"} className="icon" />
-        </a>
-        <a href="https://github.com/jjarrett21" title="Twitter">
-        <img src={"../images/twitter.svg"} className="icon" />
-        </a>
-        <a href="https://www.linkedin.com/in/jjarrett21/" title="LinkedIn">
-        <img src={"../images/linkedin.svg"} className="icon" />
-        </a>
-        </Segment>
-
     </div>
   );
 }
