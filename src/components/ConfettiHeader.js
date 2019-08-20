@@ -1,7 +1,10 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-import { Header, Segment, Icon } from 'semantic-ui-react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Modal, Icon, Button } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
-import { apply, Canvas, useRender, useResource, useThree, extend } from 'react-three-fiber';
+import { Canvas, useRender, useResource, useThree, extend } from 'react-three-fiber';
+import { Document } from 'react-pdf'
+
+
 import * as resources from '../resources/index';
 import '../confetti.css';
 import 'semantic-ui-css/semantic.min.css';
@@ -75,6 +78,11 @@ function Effect() {
 
 export default function ConfettiHeader() {
   const mouse = useRef([0, 0]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
   const onMouseMove = useCallback(
     ({ clientX: x, clientY: y }) =>
       (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
@@ -92,17 +100,42 @@ export default function ConfettiHeader() {
       </Canvas>
       <div className="header-major">
         <span>James Jarrett</span>
-        <section>
-          <Icon link name="github" inverted>
-            <a href="https://github.com/jjarrett21" title="github" />
-          </Icon>
-          <Icon link name="twitter"  inverted>
-            <a href="https://twitter.com/__youngcreator" title="twitter" />
-          </Icon>
-          <Icon link name="linkedin" inverted>
-            <a href="https://www.linkedin.com/in/jjarrett21/" title="LinkedIn" />
-          </Icon>
-        </section>
+        <div>
+          <Button icon inverted circular>
+            <Icon link name="github">
+              <a href="https://github.com/jjarrett21" title="github" />
+            </Icon>
+          </Button>
+          <Button icon inverted circular>
+            <Icon link name="twitter">
+              <a href="https://twitter.com/__youngcreator" title="twitter" />
+            </Icon>
+          </Button>
+          <Button icon inverted circular>
+            <Icon link name="linkedin">
+              <a href="https://www.linkedin.com/in/jjarrett21/" title="LinkedIn" />
+            </Icon>
+          </Button>
+          <Button icon inverted circular>
+            <Icon link name="envelope">
+              <a href="jjarrett21@gmail.com" title="Email" />
+            </Icon>
+          </Button>
+          <Modal
+            trigger={
+              <Button icon inverted circular onClick={openModal}>
+                <Icon link name="file"></Icon>
+              </Button>
+            }
+            closeIcon
+          >
+            <Modal.Content>
+              <Document file="../Assets/JarrettResume.pdf"/>
+            </Modal.Content>
+          </Modal>
+
+        </div>
+        <div></div>
       </div>
     </div>
   );
