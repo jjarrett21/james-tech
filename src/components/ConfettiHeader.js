@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Modal, Icon, Button } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 import { Canvas, useRender, useResource, useThree, extend } from 'react-three-fiber';
-import { Document } from 'react-pdf'
-
+import { Document } from 'react-pdf';
 
 import * as resources from '../resources/index';
+import pdf from '../Assets/JarrettResume.pdf';
 import '../confetti.css';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -78,18 +78,13 @@ function Effect() {
 
 export default function ConfettiHeader() {
   const mouse = useRef([0, 0]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => {
-    setModalOpen(!modalOpen);
-  };
-
   const onMouseMove = useCallback(
     ({ clientX: x, clientY: y }) =>
       (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
     []
   );
   return (
-    <div className="confetti" onMouseMove={onMouseMove}>
+    <div className="main" onMouseMove={onMouseMove}>
       <Helmet>
         <title>James Jarrett</title>
         <meta name="title" content="Welcome to my portfolio site" />
@@ -98,44 +93,35 @@ export default function ConfettiHeader() {
         <Swarm mouse={mouse} />
         <Effect />
       </Canvas>
+
+      <div>
+        <Button icon inverted circular href="https://github.com/jjarrett21">
+          <Icon link name="github" />
+        </Button>
+        <Button icon inverted circular href="https://twitter.com/__youngcreator">
+          <Icon link name="twitter" />
+        </Button>
+        <Button icon incertec circular href="https://www.linkedin.com/in/jjarrett21/">
+          <Icon link name="linkedin" />
+        </Button>
+        <Button icon inverted circular href="jjarrett21@gmail.com">
+          <Icon link name="envelope" />
+        </Button>
+        <Modal
+          trigger={
+            <Button icon inverted circular>
+              <Icon link name="file"></Icon>
+            </Button>
+          }
+          closeIcon
+        >
+          <Modal.Content>
+            <Document file={pdf} />
+          </Modal.Content>
+        </Modal>
+      </div>
       <div className="header-major">
         <span>James Jarrett</span>
-        <div>
-          <Button icon inverted circular>
-            <Icon link name="github">
-              <a href="https://github.com/jjarrett21" title="github" />
-            </Icon>
-          </Button>
-          <Button icon inverted circular>
-            <Icon link name="twitter">
-              <a href="https://twitter.com/__youngcreator" title="twitter" />
-            </Icon>
-          </Button>
-          <Button icon inverted circular>
-            <Icon link name="linkedin">
-              <a href="https://www.linkedin.com/in/jjarrett21/" title="LinkedIn" />
-            </Icon>
-          </Button>
-          <Button icon inverted circular>
-            <Icon link name="envelope">
-              <a href="jjarrett21@gmail.com" title="Email" />
-            </Icon>
-          </Button>
-          <Modal
-            trigger={
-              <Button icon inverted circular onClick={openModal}>
-                <Icon link name="file"></Icon>
-              </Button>
-            }
-            closeIcon
-          >
-            <Modal.Content>
-              <Document file="../Assets/JarrettResume.pdf"/>
-            </Modal.Content>
-          </Modal>
-
-        </div>
-        <div></div>
       </div>
     </div>
   );

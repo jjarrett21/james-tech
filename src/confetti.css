@@ -32,12 +32,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.confetti {
+.main {
   position: relative;
   width: 100%;
   height: 100%;
   color: #f9f9f9d0;
   overflow: hidden;
+  z-index: 0;
 }
 
 span.header {
@@ -92,7 +93,8 @@ div.header-major > span {
     width: 200px;
   }
   .bottom-left {
-    display: none;
+    display: inline-block;
+    justify-content: space-evenly;
   }
 }
 
@@ -162,6 +164,7 @@ canvas {
   color: white;
   -webkit-filter: drop-shadow(2px 1px 2px rgba(0, 0, 0, 0.4));
   filter: drop-shadow(2px 1px 2px rgba(0, 0, 0, 0.4));
+  z-index: 1;
 }
 
 @media only screen and (max-width: 480px) {
