@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Modal, Icon, Button } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
@@ -11,7 +13,19 @@ import 'semantic-ui-css/semantic.min.css';
 
 extend(resources);
 
-function Particle({ geometry, material }) {
+const buttonStyles = css`
+  position: relative;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  margin: 1em;
+  padding: 1em;
+  float: left;
+`;
+
+const Particle = ({ geometry, material }) => {
   let ref = useRef();
   let t = Math.random() * 100;
   let speed = 0.01 + Math.random() / 200;
@@ -31,9 +45,9 @@ function Particle({ geometry, material }) {
     );
   });
   return <mesh ref={ref} material={material} geometry={geometry} />;
-}
+};
 
-function Swarm({ mouse }) {
+const Swarm = ({ mouse }) => {
   const light = useRef();
   const [geometryRef, geometry] = useResource();
   const [materialRef, material] = useResource();
@@ -54,9 +68,9 @@ function Swarm({ mouse }) {
           .map((_, index) => <Particle key={index} material={material} geometry={geometry} />)}
     </>
   );
-}
+};
 
-function Effect() {
+const Effect = () => {
   const composer = useRef();
   const { scene, gl, size, camera } = useThree();
   useEffect(() => void composer.current.setSize(size.width, size.height), [size]);
@@ -74,7 +88,7 @@ function Effect() {
       />
     </effectComposer>
   );
-}
+};
 
 export default function ConfettiHeader() {
   const mouse = useRef([0, 0]);
@@ -84,44 +98,62 @@ export default function ConfettiHeader() {
     []
   );
   return (
-    <div className="main" onMouseMove={onMouseMove}>
-      <Helmet>
-        <title>James Jarrett</title>
-        <meta name="title" content="Welcome to my portfolio site" />
-      </Helmet>
-      <Canvas camera={{ fov: 75, position: [0, 0, 50] }}>
-        <Swarm mouse={mouse} />
-        <Effect />
-      </Canvas>
+    <div>
+      <div className="main" onMouseMove={onMouseMove}>
+        <Helmet>
+          <title>James Jarrett</title>
+          <meta name="title" content="Welcome to my portfolio site" />
+        </Helmet>
+        <Canvas camera={{ fov: 75, position: [0, 0, 50] }}>
+          <Swarm mouse={mouse} />
+          <Effect />
+        </Canvas>
+        <div className="header-major">
+          <span>James Jarrett</span>
+        </div>
+      </div>
 
-      <div>
-        <Button icon inverted circular href="https://github.com/jjarrett21">
-          <Icon link name="github" />
-        </Button>
-        <Button icon inverted circular href="https://twitter.com/__youngcreator">
-          <Icon link name="twitter" />
-        </Button>
-        <Button icon incertec circular href="https://www.linkedin.com/in/jjarrett21/">
-          <Icon link name="linkedin" />
-        </Button>
-        <Button icon inverted circular href="jjarrett21@gmail.com">
-          <Icon link name="envelope" />
-        </Button>
+      <div css={buttonStyles}>
+        <Button
+          icon="github"
+          inverted
+          circular
+          href="https://github.com/jjarrett21"
+          css={buttonStyles}
+          size="massive"
+        />
+        <Button
+          icon="twitter"
+          inverted
+          circular
+          href="https://twitter.com/__youngcreator"
+          css={buttonStyles}
+          size="massive"
+        />
+        <Button
+          icon="linkedin"
+          inverted
+          circular
+          href="https://www.linkedin.com/in/jjarrett21/"
+          css={buttonStyles}
+          size="massive"
+        />
+        <Button
+          icon="envelope"
+          inverted
+          circular
+          href="jjarrett21@gmail.com"
+          css={buttonStyles}
+          size="massive"
+        />
         <Modal
-          trigger={
-            <Button icon inverted circular>
-              <Icon link name="file"></Icon>
-            </Button>
-          }
+          trigger={<Button icon="file" inverted circular css={buttonStyles} size="massive" />}
           closeIcon
         >
           <Modal.Content>
             <Document file={pdf} />
           </Modal.Content>
         </Modal>
-      </div>
-      <div className="header-major">
-        <span>James Jarrett</span>
       </div>
     </div>
   );

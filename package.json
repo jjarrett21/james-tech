@@ -17,6 +17,7 @@
     "@vx/scale": "^0.0.190",
     "@vx/shape": "^0.0.190",
     "@vx/zoom": "^0.0.189",
+    "airbnb": "^0.0.2",
     "d3-scale-chromatic": "^1.4.0",
     "eslint": "^6.2.1",
     "pass": "^0.2.0",
