@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Modal, Icon, Button } from 'semantic-ui-react';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { Modal, Button } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 import { Canvas, useRender, useResource, useThree, extend } from 'react-three-fiber';
 import { Document } from 'react-pdf';
@@ -90,7 +90,7 @@ const Effect = () => {
   );
 };
 
-export default function ConfettiHeader() {
+export const ConfettiHeader = () => {
   const mouse = useRef([0, 0]);
   const onMouseMove = useCallback(
     ({ clientX: x, clientY: y }) =>
@@ -157,4 +157,8 @@ export default function ConfettiHeader() {
       </div>
     </div>
   );
-}
+};
+
+ConfettiHeader.displayName = 'ConfettiHeader';
+
+export default ConfettiHeader;
