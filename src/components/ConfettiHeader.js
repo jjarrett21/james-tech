@@ -142,7 +142,7 @@ export const ConfettiHeader = () => {
           icon="envelope"
           inverted
           circular
-          href="jjarrett21@gmail.com"
+          href="mailto:jjarrett21@gmail.com"
           css={buttonStyles}
           size="massive"
         />
