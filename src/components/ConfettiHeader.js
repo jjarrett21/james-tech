@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 import { Canvas, useRender, useResource, useThree, extend } from 'react-three-fiber';
-import { Document } from 'react-pdf';
+import { Document, Page } from 'react-pdf/dist/entry.webpack';
 
 import * as resources from '../resources/index';
 import pdf from '../Assets/JarrettResume.pdf';
@@ -151,7 +151,9 @@ export const ConfettiHeader = () => {
           closeIcon
         >
           <Modal.Content>
-            <Document file={pdf} />
+            <Document file={pdf}>
+              <Page pageNumber={1} width={600} />
+            </Document>
           </Modal.Content>
         </Modal>
       </div>
