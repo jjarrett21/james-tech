@@ -1,13 +1,12 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import React, { useCallback, useEffect, useRef } from 'react';
-import { Modal, Button } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 import { Canvas, useRender, useResource, useThree, extend } from 'react-three-fiber';
-import { Document, Page } from 'react-pdf/dist/entry.webpack';
+import { isMobile } from 'react-device-detect';
 
 import * as resources from '../resources/index';
-import pdf from '../Assets/JarrettResume.pdf';
 import '../confetti.css';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -90,6 +89,8 @@ const Effect = () => {
   );
 };
 
+const whichCSS = isMobile ? 'header-mobile' : 'header-major';
+
 export const ConfettiHeader = () => {
   const mouse = useRef([0, 0]);
   const onMouseMove = useCallback(
@@ -106,9 +107,10 @@ export const ConfettiHeader = () => {
         </Helmet>
         <Canvas camera={{ fov: 75, position: [0, 0, 50] }}>
           <Swarm mouse={mouse} />
+          {/* {isMobile ? null : <Swarm mouse={mouse} />} */}
           <Effect />
         </Canvas>
-        <div className="header-major">
+        <div className={whichCSS}>
           <span>James Jarrett</span>
         </div>
       </div>
@@ -146,16 +148,6 @@ export const ConfettiHeader = () => {
           css={buttonStyles}
           size="massive"
         />
-        <Modal
-          trigger={<Button icon="file" inverted circular css={buttonStyles} size="massive" />}
-          closeIcon
-        >
-          <Modal.Content>
-            <Document file={pdf}>
-              <Page pageNumber={1} width={600} />
-            </Document>
-          </Modal.Content>
-        </Modal>
       </div>
     </div>
   );
