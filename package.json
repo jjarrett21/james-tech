@@ -2,6 +2,7 @@
   "name": "james-tech",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://jjarrett.tech",
   "dependencies": {
     "@emotion/core": "^10.0.15",
     "@material-ui/core": "^4.3.2",
