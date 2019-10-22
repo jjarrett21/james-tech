@@ -128,7 +128,7 @@ export const ConfettiHeader = () => {
           icon="twitter"
           inverted
           circular
-          href="https://twitter.com/__youngcreator"
+          href="https://twitter.com/jjarrettdottech"
           css={buttonStyles}
           size="massive"
         />
